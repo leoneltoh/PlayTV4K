@@ -1,30 +1,19 @@
 workflows:
   ios-development:
     name: iOS Development Build
-    max_build_duration: 120
     instance_type: mac_mini_m1
     environment:
-      ios_signing:
-        distribution_type: development
-        generate_new_certificate: true
-      vars:
-        EXPO_TOKEN: "y8MgUBG771013PAllzVGpq9_LmvzcubHVRSiNYQA"
       node: latest
       xcode: latest
+      vars:
+        EXPO_TOKEN: "y8MgUBG771013PAllzVGpq9_LmvzcubHVRSiNYQA"
     scripts:
       - name: Install dependencies
-        script: |
-          npm install
-          npm install -g eas-cli
+        script: npm install && npm install -g eas-cli
       - name: Build iOS
-        script: |
-          xcode-project generate-ios
-          cd ios
-          pod install
-          cd ..
-          xcode-project build-ipa --workspace "ios/PlayTV4K.xcworkspace" --scheme "PlayTV4K"
+        script: eas build --platform ios --profile development --non-interactive --local
     artifacts:
-      - build/**/outputs/ipa/*.ipa
+      - build/**/*.ipa
       - /tmp/xcodebuild_logs/*.log
     publishing:
       email:
