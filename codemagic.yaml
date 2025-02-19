@@ -5,17 +5,29 @@ workflows:
     environment:
       node: latest
       xcode: latest
+      ios_signing:
+        distribution_type: development
+        generate_new_certificate: true
       vars:
-        EXPO_TOKEN: "y8MgUBG771013PAllzVGpq9_LmvzcubHVRSiNYQA"
+        BUNDLE_ID: "com.leoneltoh.playtv4k"
+        XCODE_WORKSPACE: "PlayTV4K"
+        XCODE_SCHEME: "PlayTV4K"
     scripts:
       - name: Install dependencies
         script: |
           yarn install
-          npm install -g eas-cli
+          npx expo prebuild --platform ios --clean
+      - name: Install CocoaPods dependencies
+        script: |
+          cd ios && pod install
+      - name: Set up code signing settings
+        script: |
+          xcode-project use-profiles
       - name: Build iOS
         script: |
-          eas build:configure
-          eas build --platform ios --profile development --local
+          cd ios
+          xcodebuild -workspace PlayTV4K.xcworkspace -scheme PlayTV4K -configuration Debug -sdk iphoneos -archivePath build/PlayTV4K.xcarchive archive
+          xcodebuild -exportArchive -archivePath build/PlayTV4K.xcarchive -exportPath build/IPA -exportOptionsPlist exportOptions.plist
     artifacts:
-      - build/**/*.ipa
+      - ios/build/IPA/PlayTV4K.ipa
       - /tmp/xcodebuild_logs/*.log
