@@ -1,15 +1,22 @@
 {
   "cli": {
     "version": ">= 5.9.1",
-    "requireCommit": false
+    "requireCommit": false,
+    "appVersionSource": "local"
   },
   "build": {
-    "internal": {
+    "development": {
+      "developmentClient": true,
       "distribution": "internal",
       "ios": {
         "resourceClass": "m-medium",
-        "buildConfiguration": "Release"
+        "simulator": false,
+        "buildConfiguration": "Debug",
+        "credentialsSource": "local"
       }
     }
+  },
+  "submit": {
+    "production": {}
   }
 }

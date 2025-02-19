@@ -9,9 +9,15 @@ workflows:
         EXPO_TOKEN: "y8MgUBG771013PAllzVGpq9_LmvzcubHVRSiNYQA"
     scripts:
       - name: Install dependencies
-        script: npm install && npm install -g eas-cli
+        script: |
+          npm install
+          npm install -g eas-cli
+      - name: Configure EAS
+        script: |
+          eas build:configure
       - name: Build iOS
-        script: eas build --platform ios --profile development --non-interactive --local
+        script: |
+          eas build --platform ios --profile development --non-interactive --local
     artifacts:
       - build/**/*.ipa
       - /tmp/xcodebuild_logs/*.log
