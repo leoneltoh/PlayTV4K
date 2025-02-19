@@ -1,41 +1,30 @@
 workflows:
   ios-development:
     name: iOS Development Build
-    max_build_duration: 30
+    max_build_duration: 120
     instance_type: mac_mini_m1
     environment:
+      ios_signing:
+        distribution_type: development
+        generate_new_certificate: true
       vars:
         EXPO_TOKEN: y8MgUBG771013PAllzVGpq9_LmvzcubHVRSiNYQA
       node: latest
+      xcode: latest
     scripts:
       - name: Install dependencies
         script: |
           npm install
           npm install -g eas-cli
-      - name: Configure EAS
-        script: |
-          cat > eas.json << 'EOL'
-          {
-            "cli": {
-              "version": ">= 5.9.1",
-              "requireCommit": false
-            },
-            "build": {
-              "development": {
-                "distribution": "internal",
-                "ios": {
-                  "resourceClass": "m-medium",
-                  "buildConfiguration": "Debug"
-                }
-              }
-            }
-          }
-          EOL
       - name: Build iOS
         script: |
-          eas build --platform ios --profile development --non-interactive --local
+          xcode-project generate-ios
+          cd ios
+          pod install
+          cd ..
+          xcode-project build-ipa --workspace "ios/PlayTV4K.xcworkspace" --scheme "PlayTV4K"
     artifacts:
-      - build/**/outputs/**/*.ipa
+      - build/**/outputs/ipa/*.ipa
       - /tmp/xcodebuild_logs/*.log
     publishing:
       email:
