@@ -8,7 +8,7 @@ workflows:
         distribution_type: development
         generate_new_certificate: true
       vars:
-        EXPO_TOKEN: y8MgUBG771013PAllzVGpq9_LmvzcubHVRSiNYQA
+        EXPO_TOKEN: "y8MgUBG771013PAllzVGpq9_LmvzcubHVRSiNYQA"
       node: latest
       xcode: latest
     scripts:
