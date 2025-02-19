@@ -1,22 +1,22 @@
 {
   "expo": {
-    "name": "Play TV 4K",
+    "name": "PlayTV4K",
     "slug": "playtv4k",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "dark",
+    "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#000000"
+      "backgroundColor": "#ffffff"
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.playtv4k.app",
+      "bundleIdentifier": "com.leoneltoh.playtv4k",
       "buildNumber": "1",
       "config": {
         "usesNonExemptEncryption": false
@@ -34,9 +34,12 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#000000"
+        "backgroundColor": "#ffffff"
       },
-      "package": "com.playtv4k.app"
+      "package": "com.leoneltoh.playtv4k"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {

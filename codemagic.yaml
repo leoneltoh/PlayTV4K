@@ -10,18 +10,12 @@ workflows:
     scripts:
       - name: Install dependencies
         script: |
-          npm install
+          yarn install
           npm install -g eas-cli
-      - name: Configure EAS
-        script: |
-          eas build:configure
       - name: Build iOS
         script: |
-          eas build --platform ios --profile development --non-interactive --local
+          eas build:configure
+          eas build --platform ios --profile development --local
     artifacts:
       - build/**/*.ipa
       - /tmp/xcodebuild_logs/*.log
-    publishing:
-      email:
-        recipients:
-          - graceafrica2@gmail.com
