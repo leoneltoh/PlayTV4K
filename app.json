@@ -1,0 +1,48 @@
+{
+  "expo": {
+    "name": "Play TV 4K",
+    "slug": "playtv4k",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#000000"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.playtv4k.app",
+      "buildNumber": "1",
+      "config": {
+        "usesNonExemptEncryption": false
+      },
+      "infoPlist": {
+        "UIBackgroundModes": ["audio"],
+        "LSApplicationQueriesSchemes": ["https"],
+        "NSAppTransportSecurity": {
+          "NSAllowsArbitraryLoads": true
+        },
+        "CFBundleDisplayName": "Play TV 4K",
+        "CFBundleShortVersionString": "1.0.0"
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#000000"
+      },
+      "package": "com.playtv4k.app"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "895f6f25-9c59-478f-9c74-bdbb556ea615"
+      }
+    },
+    "owner": "osiasdossou"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "cli": {
+    "version": ">= 5.9.1",
+    "requireCommit": false
+  },
+  "build": {
+    "internal": {
+      "distribution": "internal",
+      "ios": {
+        "resourceClass": "m-medium",
+        "buildConfiguration": "Release"
+      }
+    }
+  }
+}
